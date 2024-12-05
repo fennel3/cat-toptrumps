@@ -35,6 +35,20 @@
 
 .card {
   padding: 2em;
+  width: 50px;
+  height: 200px;
+  background-color: beige;
+
+}
+
+.table{
+  height: 500px;
+  width: 500px;
+  background-color: lightgreen;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
 }
 
 .read-the-docs {
