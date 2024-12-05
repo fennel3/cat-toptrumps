@@ -5,7 +5,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-  // const [cards, setCards] = useState([]);
+  
   const [cards] = useState([
     {
       id: 1,
@@ -50,32 +50,24 @@ function App() {
   //   }, []);
   // }
 
- 
+  const shuffledCards = cards.sort(() => Math.random() - 0.5);
 
-  let shuffledCards = cards.sort(() => Math.random() - .5)
-
- 
-
-dealCards(shuffledCards)
-
-
-  function dealCards(shuffledCards) { //make sure to change type
+  function dealCards(shuffledCards: any[]) {
+    //make sure to change type
     {
-      const card = shuffledCards.pop()
-
-      console.log(card)
-      return(
-        <MyCard
-          name={card.name}
-          image={card.image}
-          stats={card.stats}
-        />
-
-      )
-      ;
+      const card = shuffledCards.pop();
+      return card;
     }
   }
+  const [currentCard, setCurrentCard] = useState<any>([]);
+
+
   
+  
+  console.log(currentCard)
+
+
+  function compareCards() {}
 
   return (
     <>
@@ -93,14 +85,24 @@ dealCards(shuffledCards)
         </div>
         <div className="table">
           <div className="table">
-            {cards.map((card, index) => (
-              <MyCard
-                key={index}
-                name={card.name}
-                image={card.image}
-                stats={card.stats}
-              />
-            ))}
+            
+            
+          {currentCard && (
+        <MyCard
+          name={currentCard.name}
+          image={currentCard.image}
+          stats={currentCard.stats}
+        />
+      )}
+
+            <button
+        onClick={() => {
+          const card = dealCards(shuffledCards); 
+          setCurrentCard(card);
+        }}
+      >
+        Deal Card
+      </button>
           </div>
         </div>
 
