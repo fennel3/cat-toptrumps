@@ -5,7 +5,6 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-  
   const [cards] = useState([
     {
       id: 1,
@@ -53,7 +52,6 @@ function App() {
   const shuffledCards = cards.sort(() => Math.random() - 0.5);
 
   function dealCards(shuffledCards: any[]) {
-    //make sure to change type
     {
       const card = shuffledCards.pop();
       return card;
@@ -61,11 +59,9 @@ function App() {
   }
   const [currentCard, setCurrentCard] = useState<any>([]);
 
-
+  console.log(currentCard);
+  console.log(shuffledCards);
   
-  
-  console.log(currentCard)
-
 
   function compareCards() {}
 
@@ -85,24 +81,30 @@ function App() {
         </div>
         <div className="table">
           <div className="table">
-            
-            
-          {currentCard && (
-        <MyCard
-          name={currentCard.name}
-          image={currentCard.image}
-          stats={currentCard.stats}
-        />
-      )}
+            {currentCard && (
+              <MyCard
+                name={currentCard.name}
+                image={currentCard.image}
+                stats={currentCard.stats}
+              />
+            )}
 
-            <button
-        onClick={() => {
-          const card = dealCards(shuffledCards); 
-          setCurrentCard(card);
-        }}
-      >
-        Deal Card
-      </button>
+            
+            {shuffledCards.length > 0 && (
+              <button
+                onClick={() => {
+                  const card = dealCards(shuffledCards);
+                  setCurrentCard(card);
+                }}
+              >
+                Deal Card
+              </button>
+            )}
+
+            {shuffledCards.length < 1 &&(
+              <h1>game over!</h1>
+
+            )}
           </div>
         </div>
 
